@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+    <script src="scripts 2.0/jquery.js"></script>
+    <script src="scripts 2.0/jspsych-5.0.3/jspsych.js"></script>
+    <script src="scripts 2.0/jspsych-5.0.3/plugins/jspsych-text.js"></script>
+	<script src="scripts 2.0/centipede v3.js"></script>
+    <link href="scripts 2.0/jspsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  </head>
+  <body>
+  </body>
+</html>
+
+
+ <script type="text/javascript">
+ 
+var p1payValues = [3,4,7,9,10];
+var p2payValues = [4,5,6,8,11];
+ 
+var welcome_block = {
+  type: "text",
+  text: "Welcome to the experiment. Press any key to begin. (DELETE BEFORE QUALTRICS)"
+};
+
+var game_block = {
+  type: "centipede",
+  stage:'action',
+  timeline:[
+  {p1pay:p1payValues[0],p2pay:p2payValues[0]},
+  {p1pay:p1payValues[1],p2pay:p2payValues[1]},
+  {p1pay:p1payValues[2],p2pay:p2payValues[2]}
+  ]
+};
+
+
+var timeline = [];
+//timeline.push(welcome_block);
+timeline.push(game_block);
+
+
+
+jsPsych.init({
+  timeline: timeline,
+  on_finish: function(){jsPsych.data.localSave('mydata.csv', 'csv');}
+});
+
+
+
+
+</script>
